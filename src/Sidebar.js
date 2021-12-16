@@ -88,18 +88,39 @@ export default class Sidebar extends Component {
         }
 
         for (i = 4; i > 0; i--) {
+            var count = 4
+
             for (var j = 0; j < 5; j++) {
                 if (j < i) {
                     star.push(
-                        <StarIcon style={{ fontSize: "20px", color: "#da582d" }} key={i + "_" + j} />
+                        <StateContextConsumer>{(context) => {
+                            return <StarIcon id={i} style={{ fontSize: "20px", color: "#da582d" }} onClick={
+                                (e) => {
+                                    context.setStarFilter(e.target.id);
+                                }
+                            } key={i + "_" + j} />
+
+                        }}
+                        </StateContextConsumer>
+                        // <StarIcon id ={i} style={{ fontSize: "20px", color: "#da582d" }} key={i + "_" + j} />
                     )
                 }
                 else {
                     star.push(
-                        <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} key={i + "_" + j} />
+                        <StateContextConsumer>{(context) => {
+                            return <StarBorderIcon id={i} style={{ fontSize: "20px", color: "#da582d" }} onClick={
+                                (e) => {
+                                    context.setStarFilter(e.target.id);
+                                }
+                            } key={i + "_" + j} />
+                        }}
+                        </StateContextConsumer>
+                        // <StarBorderIcon id ={i} style={{ fontSize: "20px", color: "#da582d" }} key={i + "_" + j} />
                     )
                 }
             }
+
+            count--;
             star.push(
                 <span style={{ fontSize: "10px", position: "relative", top: "-6px" }} > & up</span>
             )
@@ -116,7 +137,81 @@ export default class Sidebar extends Component {
                 <p style={{ fontSize: "12px", marginTop: "10px" }}>{this.props.category}</p>
                 <h6 style={{ fontSize: "12px", marginTop: "20px" }}>Avg. Customer Review</h6>
                 <div style={{ marginTop: "10px" }} >
-                    {star}
+                    {/* {star} */}
+                    <StateContextConsumer>
+                        {(context) => {
+                            return <button style={{ background: "none", border: "none" }} onClick={
+                                () => {
+                                        countForId = -1;
+                                    context.setStarFilter(this.props.category,4);
+                                }}>
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+
+
+                            </button>
+                        }}
+                    </StateContextConsumer>
+                    <br/>
+                    <StateContextConsumer>
+                        {(context) => {
+                            return <button style={{ background: "none", border: "none" }} onClick={
+                                () => {
+                                        countForId = -1;
+                                    context.setStarFilter(this.props.category,3);
+                                }}>
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                
+
+                            </button>
+                        }}
+                    </StateContextConsumer>
+                    <br/>
+                
+                    <StateContextConsumer>
+                        {(context) => {
+                            return <button style={{ background: "none", border: "none" }} onClick={
+                                () => {
+                                        countForId = -1;
+                                    context.setStarFilter(this.props.category,2);
+                                }}>
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+
+
+                            </button>
+                        }}
+                    </StateContextConsumer>
+                    <br/>
+                
+                    <StateContextConsumer>
+                        {(context) => {
+                            return <button style={{ background: "none", border: "none" }} onClick={
+                                () => {
+                                        countForId = -1;
+                                    context.setStarFilter(this.props.category,1);
+                                }}>
+                                <StarIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+                                <StarBorderIcon style={{ fontSize: "20px", color: "#da582d" }} />
+
+
+                            </button>
+                        }}
+                    </StateContextConsumer>
+                
                 </div>
                 <h6 style={{ fontSize: "12px", marginTop: "25px" }}>Brand</h6>
                 {brandHtml}
@@ -126,7 +221,7 @@ export default class Sidebar extends Component {
                             <div>
                                 <h6 style={{ fontSize: "12px", marginTop: "25px" }}>Price</h6>
                                 <button
-                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none",cursor:"pointer"}}
+                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none", cursor: "pointer" }}
                                     onClick={() => {
                                         countForId = -1;
                                         context.setPriceRange(this.props.category, 1000)
@@ -136,33 +231,33 @@ export default class Sidebar extends Component {
                                 </button>
                                 <br />
                                 <button
-                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none",cursor:"pointer" }}
+                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none", cursor: "pointer" }}
                                     onClick={() => {
                                         countForId = -1;
                                         context.setPriceRange(this.props.category, 2000)
                                     }
                                     }>
-                                     &#8377;1000 - &#8377;2000
+                                    &#8377;1000 - &#8377;2000
                                 </button>
                                 <br />
                                 <button
-                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none",cursor:"pointer" }}
+                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none", cursor: "pointer" }}
                                     onClick={() => {
                                         countForId = -1;
                                         context.setPriceRange(this.props.category, 3000)
                                     }
                                     }>
-                                     &#8377;2000 - &#8377;3000
+                                    &#8377;2000 - &#8377;3000
                                 </button>
                                 <br />
                                 <button
-                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none",cursor:"pointer" }}
+                                    style={{ fontSize: "14px", paddingLeft: "10px", paddingTop: "10px", background: 'none', border: "none", cursor: "pointer" }}
                                     onClick={() => {
                                         countForId = -1;
                                         context.setPriceRange(this.props.category, 70000)
                                     }
                                     }>
-                                     &#8377;3000 - &#8377;  4000
+                                    &#8377;3000 - &#8377;  4000
                                 </button>
                                 <br />
 

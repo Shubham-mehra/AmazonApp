@@ -103,7 +103,7 @@ export default class GamingAccessories extends Component {
             if (this.props.selectedCategory === Productsdata[i].Category) {
                 sidebarselectionitems.push(Productsdata[i]['by']);
                 productHtml.push(
-                    <ProductsCard data={Productsdata[i]} key={this.props.selectedCategory.id} />
+                    <ProductsCard data={Productsdata[i]} key={i} />
                 )
             }
 
@@ -128,7 +128,7 @@ export default class GamingAccessories extends Component {
 
                     <Grid container direction="row">
                         <Grid xs={2} style={{ paddingLeft: "10px" }}>
-                            <Sidebar category={this.props.selectedCategory} Brand={sidebarselectionitems} />
+                            <Sidebar category={this.props.selectedCategory}  key={this.props.selectedCategory} Brand={sidebarselectionitems} />
                         </Grid>
                         <Grid xs={8}>
                             <div style={{ paddingLeft: "50px", width: "100%", }}>
@@ -160,8 +160,9 @@ export default class GamingAccessories extends Component {
                                                     // sidebarselectionitems.push(Productsdata[i]['by']);
                                                     console.log(testvalue.Filters[this.props.selectedCategory].priceRange)
                                                     //  if (Productsdata[i].price < testvalue.Filters[this.props.selectedCategory].priceRange) {
+                                                    if(Productsdata[i].stars>testvalue.Filters[this.props.selectedCategory].starFilter){}
                                                     productHtmld.push(
-                                                        <ProductsCard data={Productsdata[i]} key={this.props.selectedCategory.id} />
+                                                        <ProductsCard data={Productsdata[i]} key={i} />
                                                     )
                                                     // }
 
@@ -181,13 +182,13 @@ export default class GamingAccessories extends Component {
                                                     // if (Productsdata[i].price < testvalue.Filters[this.props.selectedCategory].priceRange) {
                                                     if (testvalue.Filters[this.props.selectedCategory].priceRange === "all") {
                                                         productHtmld.push(
-                                                            <ProductsCard data={productdd[i]} key={this.props.selectedCategory.id} />
+                                                            <ProductsCard data={productdd[i]} key={i} />
                                                         )
                                                     }
                                                     else {
                                                         if (productdd[i].price < testvalue.Filters[this.props.selectedCategory].priceRange) {
                                                             productHtmld.push(
-                                                                <ProductsCard data={productdd[i]} key={this.props.selectedCategory.id} />
+                                                                <ProductsCard data={productdd[i]} key={i} />
                                                             )
                                                         }
                                                     }

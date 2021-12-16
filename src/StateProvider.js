@@ -19,10 +19,9 @@ class StateContextProvider extends Component {
 
 
   componentDidMount() {
-    var categoryForFilter={}
-    selectionCatagory.forEach(element=>{
-      categoryForFilter[element.route.replace("/","")]={"checkedFilters":[],"priceRange":0}
-
+    var categoryForFilter = {}
+    selectionCatagory.forEach(element => {
+      categoryForFilter[element.route.replace("/", "")] = { "checkedFilters": [], "priceRange": 0, "StarFilter": 0 }
     })
     console.log(categoryForFilter);
     this.setState(prevState => {
@@ -40,6 +39,16 @@ class StateContextProvider extends Component {
       };
     });
   };
+  setStarFilter = (category, value) => {
+    console.log(value);
+    this.setState(prevState => {
+      var xx = prevState.Filters;
+      xx[category].StarFilter = value
+      return {
+        Filters: xx
+      };
+    });
+  }
   CheckedsFilter = (boolvalue, filter, category) => {
 
     console.log(filter);
@@ -52,14 +61,14 @@ class StateContextProvider extends Component {
       if (boolvalue) {
         if (x["checkedFilters"].includes(filter) === false) {
           x["checkedFilters"].push(filter);
-          x["priceRange"]="all";
+          x["priceRange"] = "all";
         }
       }
       else {
         const index = x["checkedFilters"].indexOf(filter);
         if (index > -1) {
           x["checkedFilters"].splice(index, 1);
-          x["priceRange"]="all";
+          x["priceRange"] = "all";
 
         }
       }
@@ -77,7 +86,7 @@ class StateContextProvider extends Component {
       }
     })
   }
- 
+
   addToCart = (tempProductId, quantity) => {
     console.log("custom");
     console.log(this.state.cart);
@@ -125,10 +134,10 @@ class StateContextProvider extends Component {
     //   }
     // })
   }
-  setPriceRange=(category,value)=>{
+  setPriceRange = (category, value) => {
     this.setState(prevState => {
-      var x=prevState.Filters;
-      x[category].priceRange=value;
+      var x = prevState.Filters;
+      x[category].priceRange = value;
       return {
         Filters: x
       }
@@ -205,7 +214,8 @@ class StateContextProvider extends Component {
           deleteProductfromCart: this.deleteProductfromCart,
           CheckedsFilter: this.CheckedsFilter,
           clearFilter: this.clearFilter,
-          setPriceRange:this.setPriceRange
+          setPriceRange: this.setPriceRange,
+          setStarFilter: this.setStarFilter
           //   selectedID => {
           //     const count = Object.assign({}, this.state.count);
           //     console.log(selectedID);
