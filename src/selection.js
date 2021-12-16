@@ -1,7 +1,5 @@
-import { ThreeSixty } from "@material-ui/icons";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Imagedata from "./images/jeans3.jpg"
 export default class product extends Component{
     render(props){
         const styleCss={
@@ -53,7 +51,7 @@ export default class product extends Component{
                     <Link to={this.props.selCat[i].route} style={{textDecoration:"none"}}>
                
                     <div style={styleCss.card}>
-                            <img src={this.props.selCat[i].image} style={{width:"100%",marginBottom:"0px"}} />
+                            <img alt='placeholder' src={this.props.selCat[i].image} style={{width:"100%",marginBottom:"0px"}} />
                     </div>
                     <p style={{color:"blue",fontSize:"10px",marginTop:"10px"}}>Shop our full selection</p>
                     </Link>

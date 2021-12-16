@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { StateContextProvider } from "./StateProvider";
-import Productsdata from './data/productData';
 ReactDOM.render(
   <StateContextProvider>
     <React.StrictMode>

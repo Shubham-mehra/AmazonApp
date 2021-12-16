@@ -1,6 +1,7 @@
 // import React from "react";
 
 // const stateContext =React.createContext();
+import selectionCatagory from "./data/catagoryData";
 
 import React, { Component } from "react";
 const { Provider, Consumer } = React.createContext();
@@ -11,13 +12,24 @@ class StateContextProvider extends Component {
     loginUser: true,
     cart: {
       "LGGram_Controller": { Quantity: 1 }
-    }
+    },
+    Filters: []
   };
 
 
 
-  componentDidMount(){
-    console.log("after mount");
+  componentDidMount() {
+    var categoryForFilter={}
+    selectionCatagory.forEach(element=>{
+      categoryForFilter[element.route.replace("/","")]={"checkedFilters":[],"priceRange":0}
+
+    })
+    console.log(categoryForFilter);
+    this.setState(prevState => {
+      return {
+        Filters: categoryForFilter
+      };
+    });
   }
 
   toggleTheme = () => {
@@ -28,6 +40,44 @@ class StateContextProvider extends Component {
       };
     });
   };
+  CheckedsFilter = (boolvalue, filter, category) => {
+
+    console.log(filter);
+    this.setState(prevState => {
+      var xx = prevState.Filters;
+      var x = xx[category];
+      if (x === undefined) {
+        x = []
+      }
+      if (boolvalue) {
+        if (x["checkedFilters"].includes(filter) === false) {
+          x["checkedFilters"].push(filter);
+          x["priceRange"]="all";
+        }
+      }
+      else {
+        const index = x["checkedFilters"].indexOf(filter);
+        if (index > -1) {
+          x["checkedFilters"].splice(index, 1);
+          x["priceRange"]="all";
+
+        }
+      }
+      xx[category] = x;
+
+      return {
+        Filters: xx
+      };
+    });
+  }
+  clearFilter = () => {
+    this.setState(prevState => {
+      return {
+        Filters: []
+      }
+    })
+  }
+ 
   addToCart = (tempProductId, quantity) => {
     console.log("custom");
     console.log(this.state.cart);
@@ -43,8 +93,8 @@ class StateContextProvider extends Component {
     console.log(cart);
     console.log(cart[tempProductId]);
     console.log(typeof quantity);
-    quantity =parseInt(quantity);
-    if (cart[tempProductId] != undefined) {
+    quantity = parseInt(quantity);
+    if (cart[tempProductId] !== undefined) {
       cart[tempProductId].Quantity = cart[tempProductId].Quantity + quantity;
     }
     else {
@@ -75,6 +125,15 @@ class StateContextProvider extends Component {
     //   }
     // })
   }
+  setPriceRange=(category,value)=>{
+    this.setState(prevState => {
+      var x=prevState.Filters;
+      x[category].priceRange=value;
+      return {
+        Filters: x
+      }
+    })
+  }
   deleteProductfromCart = (deleteProductId) => {
     console.log(deleteProductId)
     const cart = Object.assign({}, this.state.cart);
@@ -100,7 +159,7 @@ class StateContextProvider extends Component {
     const cart = Object.assign({}, this.state.cart);
     console.log(cart);
     console.log(cart[tempProductId]);
-    if (cart[tempProductId] != undefined) {
+    if (cart[tempProductId] !== undefined) {
       cart[tempProductId].Quantity = quantity;
     }
     else {
@@ -139,10 +198,14 @@ class StateContextProvider extends Component {
           productId: this.state.productId,
           loginUser: this.state.loginUser,
           cart: this.state.cart,
+          Filters: this.state.Filters,
           toggleTheme: this.toggleTheme,
           addToCart: this.addToCart,
           incrementFromCart: this.incrementFromCart,
-          deleteProductfromCart: this.deleteProductfromCart
+          deleteProductfromCart: this.deleteProductfromCart,
+          CheckedsFilter: this.CheckedsFilter,
+          clearFilter: this.clearFilter,
+          setPriceRange:this.setPriceRange
           //   selectedID => {
           //     const count = Object.assign({}, this.state.count);
           //     console.log(selectedID);

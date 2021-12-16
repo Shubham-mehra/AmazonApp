@@ -1,14 +1,11 @@
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Checkbox, FormControl, Grid, IconButton, InputLabel, OutlinedInput, TextField, Typography } from "@material-ui/core";
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { VisibilityOff } from "@material-ui/icons";
+import { Button,  Checkbox, Grid,  TextField } from "@material-ui/core";
 import React, { Component } from "react";
 import Image from "./images/Amazon_logo_black.png"
-import banner from "./images/Home_banner.jpg";
 
 
 export default class Login extends Component {
     render() {
-        var values = { showPassword: false }
+        // var values = { showPassword: false }
         return (
             <div style={{ marginTop: "50px", display: "flex" }} >
                 <Grid container
@@ -16,7 +13,7 @@ export default class Login extends Component {
                     alignItems="center" direction="column" style={{ marginTop: "50px" }}>
                     <div>
                         <span>
-                            <img src={Image} height="31px" width="103px" />
+                            <img src={Image} alt ='Placeholder' height="31px" width="103px" />
                         </span>
                     </div>
                     <div style={{ borderRadius: "4px", border: "1px #ddd solid", backgroundColor: "#fff   ", padding: "40px", width: "300px" }}>

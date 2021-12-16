@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import "./css/style.css";
-import { BrowserRouter as Router, Route, Switch,Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router,Redirect, Route, Switch } from "react-router-dom";
 import Home  from "./Home";
 import Headers from './Header';
 import Login from './Login';
@@ -11,13 +11,8 @@ import Prime from './Prime';
 import GamingAccessories from './GamingAccessories';
 import ProductDetailPage from './productDetail_page';
 import   "./StateProvider";
-import { StateContextConsumer } from './StateProvider';
-import { useState } from 'react';
 function App(props) {
-  const [count, updateCount] = useState(0)
-  function increment() {
-    updateCount(count + 1)
-  }
+  
   return (
     
     <Router>

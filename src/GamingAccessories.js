@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Sidebar from "./Sidebar";
-import ProductImage from "./images/productno1.jpg";
 import ProductsCard from "./CategoryProductDisplay";
 import { Button, Grid } from "@material-ui/core";
-import { StateContextConsumer, StateContextProvider } from "./StateProvider";
+import { StateContextConsumer } from "./StateProvider";
 import Productsdata from "./data/productData";
 export default class GamingAccessories extends Component {
     render(props) {
@@ -82,13 +81,34 @@ export default class GamingAccessories extends Component {
         //         Category: "GamingAccessories"
         //     }
         // ];
+        var filteredProduct = () => {
+            return (
+                <StateContextConsumer>
+                    {(testvalue) => {
+                        var productdd = [];
+                        testvalue.Filters.this.props.selectedCategory.forEach(element => {
+                            productdd.push(Productsdata.filter(filterd => {
+                                return filterd.by === element
+                            }))
+                        });
+                        console.log(productdd);
+                    }}
+                </StateContextConsumer>
+            )
+        }
+
+        var sidebarselectionitems = [];
+
         for (var i = 0; i < Productsdata.length; i++) {
-            if (this.props.selectedCategory == Productsdata[i].Category) {
+            if (this.props.selectedCategory === Productsdata[i].Category) {
+                sidebarselectionitems.push(Productsdata[i]['by']);
                 productHtml.push(
                     <ProductsCard data={Productsdata[i]} key={this.props.selectedCategory.id} />
                 )
             }
+
         }
+        console.log(sidebarselectionitems);
         return (
 
             <div>
@@ -105,23 +125,88 @@ export default class GamingAccessories extends Component {
                     </p>
                 </div>
                 <div style={{ display: "flex", marginTop: "50px" }}>
-               
+
                     <Grid container direction="row">
                         <Grid xs={2} style={{ paddingLeft: "10px" }}>
-                            <Sidebar category={this.props.selectedCategory}  />
+                            <Sidebar category={this.props.selectedCategory} Brand={sidebarselectionitems} />
                         </Grid>
                         <Grid xs={8}>
                             <div style={{ paddingLeft: "50px", width: "100%", }}>
-                            <StateContextConsumer>
-                                            {(testvalue) => {
-                                                return <div>{testvalue.productId} 
-                                                <Button  onClick={testvalue.toggleTheme}> click
-                                                    </Button></div> 
-                                            }}
+                                <StateContextConsumer>
+                                    {(testvalue) => {
+                                        return <div>{testvalue.productId}
+                                            <Button onClick={testvalue.toggleTheme}> click
+                                            </Button></div>
+                                    }}
 
-                                        </StateContextConsumer>
+                                </StateContextConsumer>
+                                <StateContextConsumer>
+                                    {(testvalue) => {
+                                        var productdd = [];
+                                        console.log("this.props.selectedCategory.id" + this.props.selectedCategory);
+                                        console.log(testvalue);
+                                        testvalue.Filters[this.props.selectedCategory]["checkedFilters"].forEach(element => {
+                                            var x = Productsdata.filter(filterd => {
+                                                return filterd.by === element
+                                            })
+                                            x.forEach(elementt => {
+                                                productdd.push(elementt)
+                                            })
+                                        });
+                                        if (productdd.length === 0) {
+                                            var productHtmld = []
+                                            for (var i = 0; i < Productsdata.length; i++) {
+                                                if (this.props.selectedCategory === Productsdata[i].Category) {
+                                                    // sidebarselectionitems.push(Productsdata[i]['by']);
+                                                    console.log(testvalue.Filters[this.props.selectedCategory].priceRange)
+                                                    //  if (Productsdata[i].price < testvalue.Filters[this.props.selectedCategory].priceRange) {
+                                                    productHtmld.push(
+                                                        <ProductsCard data={Productsdata[i]} key={this.props.selectedCategory.id} />
+                                                    )
+                                                    // }
+
+                                                }
+
+                                                // productHtmld.push(productdd[i].by)
+                                            }
+                                            return (
+                                                <div>{productHtmld}</div>
+                                            )
+                                        }
+                                        else {
+                                            productHtmld = []
+                                            for (i = 0; i < productdd.length; i++) {
+                                                if (this.props.selectedCategory === productdd[i].Category) {
+                                                    // sidebarselectionitems.push(Productsdata[i]['by']);
+                                                    // if (Productsdata[i].price < testvalue.Filters[this.props.selectedCategory].priceRange) {
+                                                    if (testvalue.Filters[this.props.selectedCategory].priceRange === "all") {
+                                                        productHtmld.push(
+                                                            <ProductsCard data={productdd[i]} key={this.props.selectedCategory.id} />
+                                                        )
+                                                    }
+                                                    else {
+                                                        if (productdd[i].price < testvalue.Filters[this.props.selectedCategory].priceRange) {
+                                                            productHtmld.push(
+                                                                <ProductsCard data={productdd[i]} key={this.props.selectedCategory.id} />
+                                                            )
+                                                        }
+                                                    }
+
+                                                    // }
+                                                }
+
+                                                // productHtmld.push(productdd[i].by)
+                                            }
+                                            return (
+                                                <div>{productHtmld}</div>
+                                            )
+
+                                        }
+                                    }
+                                    }
+                                </StateContextConsumer>
                                 {/* <ProductsCard/> */}
-                                {productHtml}
+                                {/* {productHtml} */}
                             </div>
                         </Grid>
                     </Grid>

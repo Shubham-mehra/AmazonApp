@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { StateContextConsumer } from "./StateProvider";
 import Productsdata from "./data/productData";
-import { queryAllByTestId } from "@testing-library/react";
 
 
 export default class Basket extends Component {
@@ -23,13 +22,13 @@ export default class Basket extends Component {
                     totalItem=totalItem+parseInt(cart[keys[i]].Quantity);
                 }
                 for (var j = 0; j < keys.length; j++) {
-                    for (var i = 0; i < Productsdata.length; i++) {
+                    for ( i = 0; i < Productsdata.length; i++) {
                         if (Productsdata[i].prodId === keys[j]) {
                             cartemp.push(Productsdata[i]);
-                            var productId = Productsdata[i].prodId;
+                            // var productId = Productsdata[i].prodId;
                             var productModelDetailTable = [];
                             // code for product detail in table  
-                            if (Productsdata[i].modelDetail != undefined) {
+                            if (Productsdata[i].modelDetail !== undefined) {
                                 var productModelDetailTableKey = Object.keys(Productsdata[i].modelDetail);
                                 for (var k = 0; k < productModelDetailTableKey.length; k++) {
                                     productModelDetailTable.push(
@@ -47,7 +46,7 @@ export default class Basket extends Component {
                             var optionHtml = [];
                             // for (var p = 1; p <= cart[keys[j]].Quantity; p++) {
                                 for (var p = 1; p <=10; p++) {
-                                    if(cart[keys[j]].Quantity==p){
+                                    if(cart[keys[j]].Quantity===p){
                                         console.log(keys[j] + "#"+p)
                                         optionHtml.push(
                                             <option value={keys[j] + "#"+p} selected>{p}
@@ -66,7 +65,7 @@ export default class Basket extends Component {
                             cart_product.push(
                                 <Grid container direction="row" column="12" style={{ borderBottom: "1px solid #e7e7e7" }}>
                                     <Grid xs={2} style={{ padding: "20px" }}>
-                                        <img src={Productsdata[i].image} style={{ width: "100%", }} />
+                                        <img src={Productsdata[i].image} alt="Product" style={{ width: "100%", }} />
                                     </Grid>
                                     <Grid xs={7} style={{ padding: "20px" }} >
                                         <div style={{ fontSize: "12px" }} >
@@ -79,7 +78,7 @@ export default class Basket extends Component {
                                             <p style={{ padding: "5px", display: Productsdata[i].freeDelivery ? "block" : "none" }}>
                                                 Eligible for FREE Shipping
                                             </p>
-                                            <img src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png" style={{ marginLeft: "5px" }} />
+                                            <img src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px._CB485936079_.png" alt="Product" style={{ marginLeft: "5px" }} />
                                             <p style={{ padding: "5px" }}>
                                                 <Checkbox size="small" style={{ padding: "0px" }} />
                                                 <span >
@@ -166,12 +165,12 @@ export default class Basket extends Component {
                         }
                     }
                 }
-                for (var i = 0; i < cartemp.length; i++) {
+                for (i = 0; i < cartemp.length; i++) {
                     var price = cartemp[i].price;
                     var quantity = testvalue.cart[cartemp[i].prodId].Quantity;
                     subTotal = subTotal + price * quantity;
                 }
-                if (cartemp.length == 0) {
+                if (cartemp.length === 0) {
                     cart_product = [];
                     cart_product.push(
                         <div style={{ fontSize: "24px", fontWeight: "700", padding: "30px", textAlign: "center", borderBottom: "1px solid #e7e7e7" }}>
@@ -208,7 +207,7 @@ export default class Basket extends Component {
                                 </Grid>
                                 <Grid item xs="3">
                                     <div>
-                                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/checkout/assets/TM_desktop._CB443006202_.png" style={{ width: "100%" }} />
+                                        <img src="https://images-eu.ssl-images-amazon.com/images/G/31/checkout/assets/TM_desktop._CB443006202_.png" alt="Product" style={{ width: "100%" }} />
                                     </div>
                                     <div style={{ backgroundColor: "white", width: "100%", marginTop: "10px", paddingTop: "20px " }}>
                                         <div style={{ textAlign: "center", paddingBottom: "20px" }}>

@@ -1,12 +1,10 @@
-import { Button, Checkbox, FormControl, Grid, InputLabel, MenuItem, NativeSelect } from "@material-ui/core";
-import React, { Component } from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { Button, Checkbox, Grid} from "@material-ui/core";
+import React from "react";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import Productsdata from "./data/productData";
-import { Link, useLocation } from "react-router-dom";
-import Select from '@material-ui/core/Select';
+import {  useLocation } from "react-router-dom";
 import LockIcon from '@material-ui/icons/Lock';
-import { CheckBox, Room } from "@material-ui/icons";
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -43,7 +41,7 @@ export default function ProductDetailPage() {
     console.log("moreModelDetail:" + location.state.product.moreModelDetail.length);
 
     // code for product detail in table  
-    if (location.state.product.modelDetail != undefined) {
+    if (location.state.product.modelDetail !== undefined) {
         var productModelDetailTableKey = Object.keys(location.state.product.modelDetail);
         for (var i = 0; i < productModelDetailTableKey.length; i++) {
             productModelDetailTable.push(
@@ -87,7 +85,7 @@ export default function ProductDetailPage() {
         </p>)
     }
     var star = [];
-    for (var i = 1; i <= 5; i++) {
+    for (i = 1; i <= 5; i++) {
         if (i <= location.state.product.stars) {
             var styleCss = {
                 fontSize: "20px",
@@ -99,7 +97,7 @@ export default function ProductDetailPage() {
             )
         }
         else {
-            var styleCss = {
+             styleCss = {
                 fontSize: "20px",
                 color: "#e59148"
             }
@@ -183,27 +181,27 @@ export default function ProductDetailPage() {
                         <Grid xs={3} style={{ position: "sticky" }} >
                             <ul>
                                 <li style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                                    <img src={location.state.product.image} style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
+                                    <img src={location.state.product.image}  alt="placeholder"style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
                                 </li>
                                 <li style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                                    <img src={location.state.product.image} style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
+                                    <img src={location.state.product.image} alt="placeholder"style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
                                 </li>
                                 <li style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                                    <img src={location.state.product.image} style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
+                                    <img src={location.state.product.image} alt="placeholder"style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
                                 </li>
                                 <li style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                                    <img src={location.state.product.image} style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
+                                    <img src={location.state.product.image} alt="placeholder"style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
                                 </li>
                                 <li style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                                    <img src={location.state.product.image} style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
+                                    <img src={location.state.product.image} alt="placeholder"style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
                                 </li>
                                 <li style={{ paddingLeft: "10px", paddingTop: "5px" }}>
-                                    <img src={location.state.product.image} style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
+                                    <img src={location.state.product.image} alt="placeholder"style={{ height: "40px", width: "40px", padding: "5px", borderRadius: "2px", border: "1px solid #d5d9d9" }} />
                                 </li>
                             </ul>
                         </Grid>
                         <Grid xs={9}>
-                            <img src={location.state.product.image} style={{ width: "90%", marginTop: "20%" }} />
+                            <img src={location.state.product.image}alt='placeholder' style={{ width: "90%", marginTop: "20%" }} />
                         </Grid>
 
                         {/* </Grid> */}
@@ -330,6 +328,7 @@ export default function ProductDetailPage() {
                                 <div style={{ textAlign: "center", paddingTop: "10px" }}>
                                     <div style={{ width: "35px", height: "35px", margin: "auto" }}>
                                         <img src="https://images-na.ssl-images-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-returns._CB484059092_.png"
+                                            alt='placeholder'
                                             style={{
                                                 width: "100%",
                                                 height: "100%",
@@ -337,7 +336,7 @@ export default function ProductDetailPage() {
                                             }} />
                                     </div>
                                     <div style={{ textDecoration: "none", color: "#007185", textAlign: "center", padding: "10px" }}>
-                                        <a style={{ fontSize: "12px" }} >
+                                        <a href="#" style={{ fontSize: "12px" }} >
                                             7 Days Replacement
                                         </a>
                                     </div>
@@ -345,7 +344,8 @@ export default function ProductDetailPage() {
                                 <div style={{ textAlign: "center", paddingTop: "10px" }}>
                                     <div style={{ width: "35px", height: "35px", margin: "auto" }}>
                                         <img src="https://images-na.ssl-images-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB485933725_.png"
-                                            style={{
+                                           alt='product'
+                                           style={{
                                                 width: "100%",
                                                 height: "100%",
 
@@ -362,6 +362,7 @@ export default function ProductDetailPage() {
                                 <div style={{ textAlign: "center", paddingTop: "10px" }}>
                                     <div style={{ width: "35px", height: "35px", margin: "auto" }}>
                                         <img src="https://images-na.ssl-images-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-warranty._CB485935626_.png"
+                                           alt='product'
                                             style={{
                                                 width: "100%",
                                                 height: "100%",
@@ -379,7 +380,8 @@ export default function ProductDetailPage() {
                                 <div style={{ textAlign: "center", paddingTop: "10px" }}>
                                     <div style={{ width: "35px", height: "35px", margin: "auto" }}>
                                         <img src="https://images-na.ssl-images-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/No_contact_delivery_final._CB432269791_.png"
-                                            style={{
+                                           alt='product'
+                                           style={{
                                                 width: "100%",
                                                 height: "100%",
 

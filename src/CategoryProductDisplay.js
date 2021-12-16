@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import ProductImage from "./images/productno1.jpg";
 import StarIcon from '@material-ui/icons/Star';
-import primeLogo from "./images/prime_logo.png";
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import CheckIcon from '@material-ui/icons/Check';
 import { Link } from "react-router-dom";
-import { Button } from "@material-ui/core";
 
 
 export default class ProductCard extends Component {
@@ -18,7 +15,6 @@ export default class ProductCard extends Component {
         //     }
         // }
         var star = [];
-        var startno=["1","2","3","4","5"]
         for (var i = 1; i <= 5; i++) {
             if (i <= this.props.data.stars) {
                 var styleCss = {
@@ -30,7 +26,7 @@ export default class ProductCard extends Component {
                 )
             }
             else {
-                var styleCss = {
+                 styleCss = {
                     fontSize: "20px",
                     color: "#da582d"
                 }
@@ -57,7 +53,7 @@ export default class ProductCard extends Component {
                 <div style={{ marginTop: "20px", borderBottom: "2px solid #ddd", width: "100%", paddingBottom: "10px" }} >
                     <div style={{ display: "flex" }}>
                         <div>
-                            <img src={this.props.data.image} style={{ width: "228px", height: "160px" }} />
+                            <img src={this.props.data.image} alt="demoimage" style={{ width: "228px", height: "160px" }} />
 
                         </div>
                         <div style={{ textDecoration: "none", paddingLeft: "100px" }}>

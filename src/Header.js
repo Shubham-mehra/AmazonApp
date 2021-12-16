@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Image from "./images/Amazon_logo.png"
-import { makeStyles } from '@material-ui/core/styles';
-import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import TextField from '@material-ui/core/TextField';
 import InputBase from '@material-ui/core/InputBase';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import { StateContextConsumer } from "./StateProvider";
 const email = "shubham";
-var cartValue = 3;
 const paddingStyle = {
   paddingLeft: "20px"
 }
@@ -107,7 +101,7 @@ export default class Header extends Component {
         <AppBar position="fixed" style={{ backgroundColor: "#131921" }}>
           <Toolbar variant="dense">
             <Link to="/home" style={StyleCss.HeaderLink}>
-              <img src={Image} height="40px" style={{ marginTop: "8px" }} /><span style={{ fontSize: "13px", position: "absolute", top: "18px" }}>.in</span>
+              <img src={Image} height="40px" alt="product" style={{ marginTop: "8px" }} /><span style={{ fontSize: "13px", position: "absolute", top: "18px" }}>.in</span>
             </Link>
             <p style={paddingStyle}><span style={{ fontSize: "10px", float: "left", paddingTop: "5px", marginLeft: "20px" }}>Hello {email}</span><br /><span style={{ fontSize: "15px", padding: "0px", fontWeight: "bold" }}>
               <RoomOutlinedIcon style={{ padding: "0px", fontSize: "17px" }} />  Select your address
