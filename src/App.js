@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import "./css/style.css";
-import { BrowserRouter as Router,Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home  from "./Home";
 import Headers from './Header';
 import Login from './Login';

@@ -1,5 +1,5 @@
 /* eslint-disable no-loop-func */
-import { Button, Checkbox } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 import React, { Component } from "react";
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
@@ -10,27 +10,27 @@ export default class Sidebar extends Component {
     render(props) {
         var star = [];
         var brandHtml = [];
-        var brand = {
-            "GamingAccessories": [
-                "BENGOO",
-                "SanDisk",
-                "Microsoft",
-                "Logitech G",
-                "PlayStation",
-                "MOVONE",
-                "amFilm"
-            ],
-            "ComputerAccessories": [
-                "HP",
-                "Lenovo",
-                "ASUS",
-                "Dell",
-                "Acer",
-                "AVITA",
-                "MSI"
-            ],
-            "HolydayDeals": ["ComputerAccessories", "GamingAccessories"]
-        }
+        // var brand = {
+        //     "GamingAccessories": [
+        //         "BENGOO",
+        //         "SanDisk",
+        //         "Microsoft",
+        //         "Logitech G",
+        //         "PlayStation",
+        //         "MOVONE",
+        //         "amFilm"
+        //     ],
+        //     "ComputerAccessories": [
+        //         "HP",
+        //         "Lenovo",
+        //         "ASUS",
+        //         "Dell",
+        //         "Acer",
+        //         "AVITA",
+        //         "MSI"
+        //     ],
+        //     "HolydayDeals": ["ComputerAccessories", "GamingAccessories"]
+        // }
         var BB = this.props.Brand;
 
         // for(var i=0;i<4;i++){
@@ -88,7 +88,7 @@ export default class Sidebar extends Component {
         }
 
         for (i = 4; i > 0; i--) {
-            var count = 4
+            // var count = 4
 
             for (var j = 0; j < 5; j++) {
                 if (j < i) {
@@ -120,7 +120,7 @@ export default class Sidebar extends Component {
                 }
             }
 
-            count--;
+            // count--;
             star.push(
                 <span style={{ fontSize: "10px", position: "relative", top: "-6px" }} > & up</span>
             )

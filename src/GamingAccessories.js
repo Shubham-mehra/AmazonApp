@@ -81,21 +81,21 @@ export default class GamingAccessories extends Component {
         //         Category: "GamingAccessories"
         //     }
         // ];
-        var filteredProduct = () => {
-            return (
-                <StateContextConsumer>
-                    {(testvalue) => {
-                        var productdd = [];
-                        testvalue.Filters.this.props.selectedCategory.forEach(element => {
-                            productdd.push(Productsdata.filter(filterd => {
-                                return filterd.by === element
-                            }))
-                        });
-                        console.log(productdd);
-                    }}
-                </StateContextConsumer>
-            )
-        }
+        // var filteredProduct = () => {
+        //     return (
+        //         <StateContextConsumer>
+        //             {(testvalue) => {
+        //                 var productdd = [];
+        //                 testvalue.Filters.this.props.selectedCategory.forEach(element => {
+        //                     productdd.push(Productsdata.filter(filterd => {
+        //                         return filterd.by === element
+        //                     }))
+        //                 });
+        //                 console.log(productdd);
+        //             }}
+        //         </StateContextConsumer>
+        //     )
+        // }
 
         var sidebarselectionitems = [];
 
